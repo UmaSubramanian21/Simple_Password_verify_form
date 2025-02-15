@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+<title>Form</title>
+<style>
+    #name_error,
+    #pwd_error,
+    #Re_pwd_error {
+        color: red;
+        display: none;
+    }
+
+    @media screen and (max-width:700px) {
+        body {
+            font-size: 10px;
+        }
+    }
+</style>
+
+<script src="
+https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/lib/index.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css
+" rel="stylesheet">
+
+</head>
+
+<body class="bg-green-300 flex items-center justify-center">
+
+    <form class=" m-5 
+    rounded-3xl
+    mt-32
+     border
+     bg-green-200 
+     flex flex-col 
+     justify-center 
+     items-center
+     gap-5 
+     p-10 
+     text-center
+     " style="height:100%;width:400px;">
+        <h1 class="text-xl text-center ">Verify your password here..</h1>
+        <table class="">
+            <tr>
+                <td><input type="text" id="name" placeholder="Username"
+                        class="bg-gray-200 p-2 m-2 rounded-md outline-none "></td>
+                <td id="name_error">Username contains only letters!</td>
+            </tr>
+            <tr>
+                <td><input type="password" id="pwd" placeholder="Password"
+                        class="bg-gray-200 p-2 m-2 rounded-md outline-none"></td>
+                <td id="pwd_error"> Enter correct password! </td>
+            </tr>
+            <tr>
+                <td><input type="password" id="Retype_pwd" placeholder="Re enter password"
+                        class="bg-gray-200 p-2 m-2 rounded-md outline-none"></td>
+                <td id="Re_pwd_error"> Password mismatch! </td>
+            </tr>
+            <tr>
+                <td><input type="submit" id="submit"
+                        class=" text-white m-2 p-2 rounded-md w-52 bg-green-300 cursor-pointer outline-none"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+<script>
+    // Selecting Elements
+    var Username = document.getElementById("name")
+    var Pwd = document.getElementById("pwd")
+    var Retype_pwd = document.getElementById("Retype_pwd")
+    var btn = document.getElementById("submit")
+    var name_error = document.getElementById("name_error")
+    var pwd_error = document.getElementById("pwd_error")
+    var Re_pwd_error = document.getElementById("Re_pwd_error")
+    var validate = true
+    btn.addEventListener("click", function () {
+        event.preventDefault()
+
+        var user_entered_name = Username.value
+        // regular Expressions
+        // name regex
+        var name_regex = /^[a-zA-Z]+$/
+        // password regex
+        var pwd_regex = /[a-zA-Z0-9]+/
+
+        // name field
+        if (name_regex.test(user_entered_name) == true) {
+            console.log("Success")
+        }
+        else {
+            console.log("try again")
+            name_error.style.display = "block"
+            validate = false
+        }
+        // pwd fields
+        if (pwd_regex.test(pwd.value) == true) {
+            console.log("pwd ok")
+        }
+        else {
+            pwd_error.style.display = "block"
+            validate = false
+
+        }
+        if (Pwd.value == Retype_pwd.value) {
+            console.log("match pwd")
+        }
+        else {
+            Re_pwd_error.style.display = "block"
+            validate = false
+
+        }
+        if (validate == true) {
+            alert("form submitted successfully")
+        }
+    })
+</script>
+
+</html>
